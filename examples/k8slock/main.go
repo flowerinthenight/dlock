@@ -31,7 +31,6 @@ func run(ctx context.Context, done chan error) {
 	for {
 		select {
 		case <-ctx.Done():
-			klog.Info("done")
 			done <- nil
 			return
 		}
