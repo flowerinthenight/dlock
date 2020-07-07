@@ -5,3 +5,4 @@ A simple [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.
 
 # Usage
 ### LeaseLock
+A [sample code](https://github.com/flowerinthenight/dlock/tree/master/examples/k8slock) is provided for reference. A deployment file is also provided.
