@@ -11,20 +11,6 @@ import (
 	"k8s.io/client-go/tools/leaderelection/resourcelock"
 )
 
-func k8sclient() (*kubernetes.Clientset, error) {
-	config, err := rest.InClusterConfig()
-	if err != nil {
-		return nil, err
-	}
-
-	client, err := kubernetes.NewForConfig(config)
-	if err != nil {
-		return nil, err
-	}
-
-	return client, nil
-}
-
 type K8sLockOption interface {
 	Apply(*K8sLock)
 }
@@ -180,4 +166,18 @@ func (l *K8sLock) Lock(ctx context.Context) error {
 func (l *K8sLock) Unlock() error {
 	l.cancel()
 	return nil
+}
+
+func k8sclient() (*kubernetes.Clientset, error) {
+	config, err := rest.InClusterConfig()
+	if err != nil {
+		return nil, err
+	}
+
+	client, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		return nil, err
+	}
+
+	return client, nil
 }
