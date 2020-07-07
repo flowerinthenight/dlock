@@ -8,8 +8,7 @@ A simple [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.
 The simplest usage form looks something like:
 ```go
 lock := dlock.NewK8sLock("unique-id", "lock-name")
-ctx, _ := context.WithCancel(context.TODO())
-lock.Lock(ctx)
+lock.Lock(context.TODO())
 ...
 lock.Unlock
 ```
