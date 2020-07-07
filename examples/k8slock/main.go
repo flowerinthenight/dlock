@@ -64,8 +64,7 @@ func run(ctx context.Context, done chan error) {
 	klog.Infof("[%v] now, let's attempt to grab the lock until termination", id)
 	time.Sleep(time.Second * 5)
 
-	quit, _ := context.WithCancel(context.TODO())
-	go lock.Lock(quit)
+	go lock.Lock(context.TODO())
 
 	for {
 		select {
