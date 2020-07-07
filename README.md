@@ -5,6 +5,15 @@ A simple [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.
 
 # Usage
 ### LeaseLock
+The simplest usage form looks something like:
+```go
+lock := dlock.NewK8sLock("unique-id", "lock-name")
+ctx, _ := context.WithCancel(context.TODO())
+lock.Lock(ctx)
+...
+lock.Unlock
+```
+
 A [sample code](https://github.com/flowerinthenight/dlock/tree/master/examples/k8slock) is provided for reference. A [deployment file](https://github.com/flowerinthenight/dlock/blob/master/examples/k8slock/k8slock.yaml) is also provided. It will deploy two pods that will both try to grab the same lock.
 
 ```bash
