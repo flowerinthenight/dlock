@@ -6,7 +6,7 @@ A simple [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.
 # Usage
 ### LeaseLock
 The simplest usage form looks something like:
-```go
+```golang
 lock := dlock.NewK8sLock("unique-id", "lock-name")
 lock.Lock(context.TODO())
 ...
