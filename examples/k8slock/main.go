@@ -54,11 +54,11 @@ func run(ctx context.Context, done chan error) {
 	lock.Lock(tm) // block for 1min, trying to grab lock
 
 	if atomic.LoadInt32(&locked) == 1 {
-		klog.Infof("[%v] got the lock!", id)
+		klog.Infof("[%v] got the lock within that minute!", id)
 		atomic.StoreInt32(&locked, 0) // reset
 		lock.Unlock()
 	} else {
-		klog.Infof("[%v] we didn't get the lock", id)
+		klog.Infof("[%v] we didn't get the lock within that minute", id)
 	}
 
 	klog.Infof("[%v] now, let's attempt to grab the lock until termination", id)
@@ -72,10 +72,10 @@ func run(ctx context.Context, done chan error) {
 		case <-ctx.Done():
 			klog.Infof("[%v] stopping...", id)
 			if atomic.LoadInt32(&locked) == 1 {
-				klog.Infof("[%v] got the lock!", id)
+				klog.Infof("[%v] got the lock in the end", id)
 				lock.Unlock()
 			} else {
-				klog.Infof("[%v] we didn't get the lock", id)
+				klog.Infof("[%v] we didn't get the lock in the end", id)
 			}
 
 			done <- nil
