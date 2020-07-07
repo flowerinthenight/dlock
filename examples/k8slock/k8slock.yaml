@@ -39,20 +39,3 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        ports:
-        - containerPort: 8080
-
----
- 
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: k8slock-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: k8slock
-  minReplicas: 2
-  maxReplicas: 2
-  targetCPUUtilizationPercentage: 80
