@@ -64,8 +64,10 @@ func (w withStartCallback) Apply(o *K8sLock) { o.onStart = (func(context.Context
 // WithStartCallback provides an option to set a callback after we acquired the new lock.
 func WithStartCallback(v func(context.Context)) K8sLockOption { return withStartCallback(v) }
 
-// NewK8sLock returns an object that can be used to acquired/release a lock using k8s'
-// LeaseLock resource object.
+// NewK8sLock returns an object that can be used to acquire/release a lock using k8s'
+// LeaseLock resource object. id is the locker's unique identity displayed as the HOLDER
+// when you do kubectl get lease. name is the LeaseLock resource name. When not set, it
+// will use the default namespace.
 func NewK8sLock(id, name string, opts ...K8sLockOption) *K8sLock {
 	lock := &K8sLock{
 		id:            id,
