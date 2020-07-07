@@ -31,5 +31,6 @@ $ kubectl delete -f k8slock.yaml
 ```
 
 ### TODO
+Need help. PR's are welcome.
 - [ ] Redis
 - [ ] Add CI
