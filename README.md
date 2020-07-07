@@ -13,7 +13,7 @@ lock.Lock(context.TODO())
 lock.Unlock
 ```
 
-A [sample code](https://github.com/flowerinthenight/dlock/tree/master/examples/k8slock) is provided for reference. A [deployment file](https://github.com/flowerinthenight/dlock/blob/master/examples/k8slock/k8slock.yaml) is also provided. It will deploy two pods that will both try to grab the same lock.
+A [sample code](https://github.com/flowerinthenight/dlock/tree/master/examples/k8slock) is provided for reference. A [deployment file](https://github.com/flowerinthenight/dlock/blob/master/examples/k8slock/k8slock.yaml) is also provided (only tested on GKE). It will deploy two pods that will both try to grab the same lock.
 
 ```bash
 # Deploy to k8s:
