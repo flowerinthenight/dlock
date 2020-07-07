@@ -29,6 +29,13 @@ type K8sLockOption interface {
 	Apply(*K8sLock)
 }
 
+type withK8sClient struct{ client *kubernetes.Clientset }
+
+func (w withK8sClient) Apply(o *K8sLock) { o.client = w.client }
+
+// WithK8sClient provides an option to set a k8s client object.
+func WithK8sClient(c *kubernetes.Clientset) K8sLockOption { return withK8sClient{c} }
+
 type withNamespace string
 
 func (w withNamespace) Apply(o *K8sLock) { o.namespace = string(w) }
@@ -92,6 +99,7 @@ func NewK8sLock(id, name string, opts ...K8sLockOption) *K8sLock {
 }
 
 type K8sLock struct {
+	client        *kubernetes.Clientset
 	id            string
 	name          string
 	namespace     string
@@ -109,9 +117,12 @@ type K8sLock struct {
 // Lock attempts to acquire a k8s lock using LeaseLock. This call will unblock/return
 // when lock is acquired or when ctx expires or is cancelled.
 func (l *K8sLock) Lock(ctx context.Context) error {
-	client, err := k8sclient()
-	if err != nil {
-		return err
+	var err error
+	if l.client == nil {
+		l.client, err = k8sclient()
+		if err != nil {
+			return err
+		}
 	}
 
 	// For the Unlock method.
@@ -124,7 +135,7 @@ func (l *K8sLock) Lock(ctx context.Context) error {
 				Name:      l.name,
 				Namespace: l.namespace,
 			},
-			Client:     client.CoordinationV1(),
+			Client:     l.client.CoordinationV1(),
 			LockConfig: resourcelock.ResourceLockConfig{Identity: l.id},
 		}
 
