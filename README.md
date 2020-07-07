@@ -25,4 +25,7 @@ I0707 22:02:14.848754       1 main.go:73] [10.28.0.225] stopping...
 I0707 22:02:14.848779       1 main.go:78] [10.28.0.225] we didn't get the lock in the end
 I0707 22:02:14.859302       1 main.go:73] [10.28.4.52] stopping...
 I0707 22:02:14.859346       1 main.go:75] [10.28.4.52] got the lock in the end
+
+# Cleanup:
+$ kubectl delete -f k8slock.yaml
 ```
