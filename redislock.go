@@ -14,7 +14,7 @@ type RedisPoolOption interface {
 
 type withPassword string
 
-func (w withPassword) Apply(o *rpool) { o.host = string(w) }
+func (w withPassword) Apply(o *rpool) { o.passwd = string(w) }
 
 // WithPassword provides an option to set a password to a Redis pool.
 func WithPassword(v string) RedisPoolOption { return withPassword(v) }
