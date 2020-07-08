@@ -4,7 +4,7 @@ Package for distributed locks. At the moment, available implementations are [Red
 A simple [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.go) interface is also provided. All lock objects in this package implement this interface.
 
 # Usage
-### LeaseLock
+- ### LeaseLock
 The simplest usage form looks something like:
 ```golang
 lock := dlock.NewK8sLock("unique-id", "lock-name")
