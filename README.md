@@ -58,7 +58,7 @@ lock.Lock(context.Background())
 lock.Unlock()
 ```
 
-You can check out the [test file](https://github.com/flowerinthenight/dlock/blob/master/redislock_test.go) and the [sample code](https://github.com/flowerinthenight/dlock/blob/master/examples/redislock/main.go) for usage reference. You can run the sample code in separate terminals simultaneously.
+You can check out the [test file](https://github.com/flowerinthenight/dlock/blob/master/redislock_test.go) and the [sample code](https://github.com/flowerinthenight/dlock/blob/master/examples/redislock/main.go) for usage reference. You can run the sample code in separate terminals simultaneously and one process should be able to grab the Redis lock.
 
 ----
 
