@@ -26,11 +26,11 @@ var (
 		Use:   "k8slock",
 		Short: "example of k8slock",
 		Long:  "Example of k8slock.",
-		RunE:  root,
+		RunE:  run,
 	}
 )
 
-func run(ctx context.Context, done chan error) {
+func do(ctx context.Context, done chan error) {
 	id := os.Getenv("MY_POD_IP") // set from k8s deployment
 	name := "k8slock"            // the name of the LeaseLock resource
 	var locked int32
@@ -83,10 +83,10 @@ func run(ctx context.Context, done chan error) {
 	}
 }
 
-func root(cmd *cobra.Command, args []string) error {
-	quit, cancel := context.WithCancel(context.TODO())
+func run(cmd *cobra.Command, args []string) error {
+	quit, cancel := context.WithCancel(context.Background())
 	done := make(chan error)
-	go run(quit, done)
+	go do(quit, done)
 
 	// Wait for termination.
 	go func() {
