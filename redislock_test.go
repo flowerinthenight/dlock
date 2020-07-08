@@ -27,9 +27,9 @@ func Test__LockUnlock(t *testing.T) {
 	ch := make(chan error, 1)
 
 	go func() {
-		t.Log("attempt to lock from goroutine")
 		time.Sleep(time.Second)
 		l.Lock(context.Background())
+		t.Log("locked from goroutine")
 		time.Sleep(time.Second * 3)
 		l.Unlock()
 		t.Log("unlocked from goroutine")
@@ -37,12 +37,12 @@ func Test__LockUnlock(t *testing.T) {
 	}()
 
 	// This should lock first.
-	t.Log("attempt to lock from main")
 	err := l.Lock(context.TODO())
 	if err != nil {
 		t.Fatal(err)
 	}
 
+	t.Log("locked from main")
 	l.Unlock()
 	t.Log("unlocked from main")
 	<-ch
