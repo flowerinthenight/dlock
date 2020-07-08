@@ -3,9 +3,11 @@ module github.com/flowerinthenight/dlock
 go 1.14
 
 require (
+	github.com/go-redsync/redsync v1.4.2
 	github.com/golang/groupcache v0.0.0-20190129154638-5b532d6fd5ef // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
-	github.com/gomodule/redigo v1.8.2
+	github.com/gomodule/redigo v2.0.0+incompatible
+	github.com/stretchr/testify v1.5.1 // indirect
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381 // indirect
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d // indirect
 	golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e // indirect

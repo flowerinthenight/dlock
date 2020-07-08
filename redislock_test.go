@@ -11,15 +11,18 @@ func Test__NewRedisPool(t *testing.T) {
 		return
 	}
 
-	pool, err := NewRedisPool(host, WithPassword(os.Getenv("REDIS_PASSWORD")))
-	if err != nil {
-		t.Fatal(err)
-	}
-
+	pool := NewRedisPool(host, WithPassword(os.Getenv("REDIS_PASSWORD")))
 	con := pool.Get()
 	if con == nil {
 		t.Fatal("got nil con")
 	}
 
 	con.Close()
+}
+
+func Test__NewRedisLock(t *testing.T) {
+	l := NewRedisLock("hello", nil)
+	if l == nil {
+		t.Fatal("got nil lock")
+	}
 }
