@@ -41,6 +41,15 @@ $ kubectl delete -f k8slock.yaml
 - ### Redis
 The Redis implementation is basically a wrapper to the brilliant [redsync](https://github.com/go-redsync/redsync) package, with additional utility functions for working with Redis connection pools. It's also implemented in a way to follow the [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.go) interface.
 
+To use with a single Redis host, with password, use defaults:
+```golang
+pool := dlock.NewRedisPool("1.2.3.4", dlock.WithPassword("secret-pass"))
+lock := dlock.NewRedisLock("testredislock", nil, dlock.WithPools([]*redis.Pool{pool}))
+lock.Lock(context.Background())
+...
+lock.Unlock()
+```
+
 ----
 
 ### TODO
