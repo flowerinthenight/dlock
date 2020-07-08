@@ -171,6 +171,9 @@ func (l *rlock) Lock(ctx context.Context) error {
 }
 
 func (l *rlock) Unlock() error {
-	l.cancel()
+	if l.cancel != nil {
+		l.cancel()
+	}
+
 	return nil
 }
