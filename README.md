@@ -38,6 +38,9 @@ main.go:75] [10.28.4.52] got the lock in the end
 $ kubectl delete -f k8slock.yaml
 ```
 
+- ### Redis
+TODO
+
 ----
 
 ### TODO
