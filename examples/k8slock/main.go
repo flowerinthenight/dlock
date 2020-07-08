@@ -66,21 +66,16 @@ func do(ctx context.Context, done chan error) {
 
 	go lock.Lock(context.TODO())
 
-	for {
-		select {
-		case <-ctx.Done():
-			klog.Infof("[%v] stopping...", id)
-			if atomic.LoadInt32(&locked) == 1 {
-				klog.Infof("[%v] got the lock in the end", id)
-				lock.Unlock()
-			} else {
-				klog.Infof("[%v] we didn't get the lock in the end", id)
-			}
-
-			done <- nil
-			return
-		}
+	<-ctx.Done()
+	klog.Infof("[%v] stopping...", id)
+	if atomic.LoadInt32(&locked) == 1 {
+		klog.Infof("[%v] got the lock in the end", id)
+		lock.Unlock()
+	} else {
+		klog.Infof("[%v] we didn't get the lock in the end", id)
 	}
+
+	done <- nil
 }
 
 func run(cmd *cobra.Command, args []string) error {
