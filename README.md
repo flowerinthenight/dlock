@@ -45,6 +45,6 @@ The Redis implementation is basically a wrapper to the brilliant [redsync](https
 
 ### TODO
 PR's are welcome.
-- [ ] Redis
+- [x] Redis
 - [ ] ectd
 - [ ] Add CI
