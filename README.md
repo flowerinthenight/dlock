@@ -68,4 +68,4 @@ You can check out the [test file](https://github.com/flowerinthenight/dlock/blob
 PR's are welcome.
 - [x] Redis
 - [ ] ectd
-- [ ] Add CI
+- [x] Add CI
