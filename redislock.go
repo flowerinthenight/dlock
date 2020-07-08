@@ -106,6 +106,9 @@ func (w withExtendAfter) Apply(o *rlock) { o.extend = time.Duration(w) }
 // WithExtendAfter provides an option to set the duration before extending the lock.
 func WithExtendAfter(v time.Duration) RedisLockOption { return withExtendAfter(v) }
 
+// NewRedisLock creates an object that can be used to acquire/release a lock using
+// Redis. This is built on top of redsync with the addition of context and implementing
+// the Locker interface.
 func NewRedisLock(name string, mopts []redsync.Option, opts ...RedisLockOption) *rlock {
 	lock := &rlock{
 		hosts:  []string{},
@@ -139,6 +142,8 @@ type rlock struct {
 	cancel context.CancelFunc
 }
 
+// Lock attempts to grab the named lock. It will also attempt to extend it until
+// Unlock is called or if ctx is cancelled or expired.
 func (l *rlock) Lock(ctx context.Context) error {
 	if err := l.m.Lock(); err != nil {
 		return err
