@@ -1,9 +1,9 @@
-module github.com/flowerinthenight/redislock
+module github.com/flowerinthenight/dlock/examples/redislock
 
 go 1.14
 
 require (
-	github.com/flowerinthenight/dlock v0.0.0-20200708044148-5dc16ec8f18d
+	github.com/flowerinthenight/dlock v0.0.0-20200708051730-6f7d47f9c7c9
 	github.com/gomodule/redigo v2.0.0+incompatible
 )
 

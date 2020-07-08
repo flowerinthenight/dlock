@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"os"
 	"time"
 
@@ -22,7 +23,17 @@ func main() {
 	// Use 1 Redis pool.
 	l := dlock.NewRedisLock("testredislock", nil, dlock.WithPools([]*redis.Pool{pool}))
 
+	// Use the usual lock/unlock.
 	l.Lock(context.TODO())
+	log.Println("locked")
 	time.Sleep(time.Second * 5)
 	l.Unlock()
+	log.Println("unlocked")
+
+	// Use context expiration.
+	// ctx, _ := context.WithTimeout(context.Background(), time.Second*10)
+	// log.Println("lock with context, expire 10s")
+	// l.Lock(ctx)
+	// <-ctx.Done()
+	// log.Println("unlocked")
 }

@@ -23,8 +23,8 @@ github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e/go.mod h1:/Zj4wYkg
 github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633/go.mod h1:otzb+WCGbkyDHkqmQmT5YD2WR4BBwUdeQoFo8l/7tVs=
 github.com/evanphx/json-patch v4.2.0+incompatible h1:fUDGZCv/7iAN7u0puUVhvKCcsR6vRfwrJatElLBEf0I=
 github.com/evanphx/json-patch v4.2.0+incompatible/go.mod h1:50XU6AFN0ol/bzJsmQLiYLvXMP4fmwYFNcr97nuDLSk=
-github.com/flowerinthenight/dlock v0.0.0-20200708044148-5dc16ec8f18d h1:YWd9Mm0M8MEc0vCQiCJfnXZUYHLaAIgPkWzAnp7eQoo=
-github.com/flowerinthenight/dlock v0.0.0-20200708044148-5dc16ec8f18d/go.mod h1:xGgXD3ObetWrI7xmC4NiRvQn8/3UMdP5BgXvO4K5qRs=
+github.com/flowerinthenight/dlock v0.0.0-20200708051730-6f7d47f9c7c9 h1:lYnuEdVkCAlbMwj7un4BMfvl03j22hTaslXM+k0TkPo=
+github.com/flowerinthenight/dlock v0.0.0-20200708051730-6f7d47f9c7c9/go.mod h1:xGgXD3ObetWrI7xmC4NiRvQn8/3UMdP5BgXvO4K5qRs=
 github.com/fsnotify/fsnotify v1.4.7 h1:IXs+QLmnXW2CcXuY+8Mzv/fWEsPGWxqefPtCP5CnV9I=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
 github.com/ghodss/yaml v0.0.0-20150909031657-73d445a93680/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
