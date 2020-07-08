@@ -39,7 +39,7 @@ $ kubectl delete -f k8slock.yaml
 ```
 
 - ### Redis
-TODO
+The Redis implementation is basically a wrapper to the brilliant [redsync](https://github.com/go-redsync/redsync) package, with additional utility functions for working with Redis connection pools. It's also implemented in a way to follow the `Locker` interface.
 
 ----
 
