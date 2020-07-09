@@ -68,4 +68,5 @@ You can check out the [test file](https://github.com/flowerinthenight/dlock/blob
 PR's are welcome.
 - [x] Redis
 - [ ] etcd
+- [ ] Zookeeper
 - [x] Add CI
