@@ -69,4 +69,5 @@ PR's are welcome.
 - [x] Redis
 - [ ] etcd
 - [ ] Zookeeper
+- [ ] Consul
 - [x] Add CI
