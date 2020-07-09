@@ -45,7 +45,7 @@ The Redis implementation is basically a wrapper to the brilliant [redsync](https
 
 To use with a single Redis host, no password, use defaults:
 ```golang
-lock := dlock.NewRedisLock("testredislock", nil, dlock.WithHost("1.2.3.4"))
+lock := dlock.NewRedisLock("testredislock", dlock.WithHost("1.2.3.4"))
 lock.Lock(context.Background())
 ...
 lock.Unlock()
@@ -54,7 +54,7 @@ lock.Unlock()
 To use with a single Redis host, with password, use defaults:
 ```golang
 pool := dlock.NewRedisPool("1.2.3.4", dlock.WithPassword("secret-pass"))
-lock := dlock.NewRedisLock("testredislock", nil, dlock.WithPools([]*redis.Pool{pool}))
+lock := dlock.NewRedisLock("testredislock", dlock.WithPools([]*redis.Pool{pool}))
 lock.Lock(context.Background())
 ...
 lock.Unlock()
