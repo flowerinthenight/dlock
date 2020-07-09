@@ -23,7 +23,7 @@ func Test__LockUnlock(t *testing.T) {
 	pool := NewRedisPool(host, WithPassword(pass))
 
 	// Use 1 Redis pool.
-	l := NewRedisLock("testredislock", nil, WithPools([]*redis.Pool{pool}))
+	l := NewRedisLock("testredislock", WithPools([]*redis.Pool{pool}))
 	ch := make(chan error, 1)
 
 	go func() {

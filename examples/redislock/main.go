@@ -21,7 +21,7 @@ func main() {
 	pool := dlock.NewRedisPool(host, dlock.WithPassword(pass))
 
 	// Use 1 Redis pool.
-	l := dlock.NewRedisLock("testredislock", nil, dlock.WithPools([]*redis.Pool{pool}))
+	l := dlock.NewRedisLock("testredislock", dlock.WithPools([]*redis.Pool{pool}))
 
 	// Use the usual lock/unlock.
 	l.Lock(context.TODO())

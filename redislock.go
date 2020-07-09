@@ -106,13 +106,21 @@ func (w withExtendAfter) Apply(o *rlock) { o.extend = time.Duration(w) }
 // WithExtendAfter provides an option to set the duration before extending the lock.
 func WithExtendAfter(v time.Duration) RedisLockOption { return withExtendAfter(v) }
 
+type withRedsyncOptions struct{ opts []redsync.Option }
+
+func (w withRedsyncOptions) Apply(o *rlock) { o.rsopts = w.opts }
+
+// WithRedsyncOptions provides an option to set additional options to the underlying redsync Mutex.
+func WithRedsyncOptions(v []redsync.Option) RedisLockOption { return withRedsyncOptions{v} }
+
 // NewRedisLock creates an object that can be used to acquire/release a lock using
 // Redis. This is built on top of redsync with the addition of context and implementing
 // the Locker interface.
-func NewRedisLock(name string, mopts []redsync.Option, opts ...RedisLockOption) *rlock {
+func NewRedisLock(name string, opts ...RedisLockOption) *rlock {
 	lock := &rlock{
 		hosts:  []string{},
 		pools:  []redsync.Pool{},
+		rsopts: []redsync.Option{},
 		extend: time.Second * 5,
 	}
 
@@ -129,13 +137,14 @@ func NewRedisLock(name string, mopts []redsync.Option, opts ...RedisLockOption) 
 	}
 
 	rs := redsync.New(lock.pools)
-	lock.m = rs.NewMutex(name, mopts...)
+	lock.m = rs.NewMutex(name, lock.rsopts...)
 	return lock
 }
 
 type rlock struct {
 	hosts  []string
 	pools  []redsync.Pool
+	rsopts []redsync.Option
 	m      *redsync.Mutex
 	extend time.Duration
 	quit   context.Context
