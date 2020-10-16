@@ -2,6 +2,7 @@ package dlock
 
 import (
 	"context"
+	"sync/atomic"
 	"time"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -97,6 +98,7 @@ type K8sLock struct {
 	onNewLeader   func(string)
 	onStart       func(context.Context)
 	onStop        func()
+	leader        int32
 
 	quit   context.Context
 	cancel context.CancelFunc
@@ -136,12 +138,14 @@ func (l *K8sLock) Lock(ctx context.Context) error {
 			RetryPeriod:     l.retryPeriod,
 			Callbacks: leaderelection.LeaderCallbacks{
 				OnStartedLeading: func(ctx context.Context) {
+					atomic.StoreInt32(&l.leader, 1)
 					leadch <- struct{}{}
 					if l.onStart != nil {
 						l.onStart(ctx)
 					}
 				},
 				OnStoppedLeading: func() {
+					atomic.StoreInt32(&l.leader, 0)
 					if l.onStop != nil {
 						l.onStop()
 					}
@@ -168,6 +172,10 @@ func (l *K8sLock) Lock(ctx context.Context) error {
 func (l *K8sLock) Unlock() error {
 	l.cancel()
 	return nil
+}
+
+func (l *K8sLock) IsLeader() bool {
+	return atomic.LoadInt32(&l.leader) == 1
 }
 
 func k8sclient() (*kubernetes.Clientset, error) {
