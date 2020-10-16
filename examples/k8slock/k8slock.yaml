@@ -32,6 +32,13 @@ spec:
       - name: k8slock
         image: quay.io/flowerinthenight/k8slock
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
         env:
         - name: GET_HOSTS_FROM
           value: dns
