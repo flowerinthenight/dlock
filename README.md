@@ -1,4 +1,4 @@
-![Main](https://github.com/flowerinthenight/dlock/workflows/Main/badge.svg)
+![main](https://github.com/flowerinthenight/dlock/workflows/main/badge.svg)
 
 # dlock
 Package for distributed locks. At the moment, available implementations are [Kubernetes](https://kubernetes.io/) using the [LeaseLock](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#lease-v1-coordination-k8s-io) resource and [Redlock](https://redis.io/topics/distlock) via [redsync](https://github.com/go-redsync/redsync).
