@@ -7,15 +7,10 @@ import (
 
 type SpindleLockOptions struct {
 	Client   *spanner.Client
-	Table    string
-	Name     string
-	Id       string // optional
-	Duration int64  // optional
-}
-
-type SpindleLock struct {
-	opts *SpindleLockOptions
-	lock *spindle.Lock
+	Table    string // Spanner table name
+	Name     string // lock name
+	Id       string // optional, generated if empty
+	Duration int64  // optional, will use spindle's default
 }
 
 func NewSpindleLock(opts *SpindleLockOptions) *SpindleLock {
@@ -35,4 +30,9 @@ func NewSpindleLock(opts *SpindleLockOptions) *SpindleLock {
 
 	s.lock = spindle.New(opts.Client, opts.Table, opts.Name, sopts...)
 	return s
+}
+
+type SpindleLock struct {
+	opts *SpindleLockOptions
+	lock *spindle.Lock
 }
