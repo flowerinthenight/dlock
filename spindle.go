@@ -2,6 +2,7 @@ package dlock
 
 import (
 	"context"
+	"log"
 	"sync/atomic"
 	"time"
 
@@ -10,11 +11,12 @@ import (
 )
 
 type SpindleLockOptions struct {
-	Client   *spanner.Client
-	Table    string // Spanner table name
-	Name     string // lock name
-	Id       string // optional, generated if empty
-	Duration int64  // optional, will use spindle's default
+	Client   *spanner.Client // Spanner client
+	Table    string          // Spanner table name
+	Name     string          // lock name
+	Id       string          // optional, generated if empty
+	Duration int64           // optional, will use spindle's default
+	Logger   *log.Logger     // pass to spindle
 }
 
 func NewSpindleLock(opts *SpindleLockOptions) *SpindleLock {
@@ -30,6 +32,10 @@ func NewSpindleLock(opts *SpindleLockOptions) *SpindleLock {
 
 	if opts.Duration != 0 {
 		sopts = append(sopts, spindle.WithDuration(opts.Duration))
+	}
+
+	if opts.Logger != nil {
+		sopts = append(sopts, spindle.WithLogger(opts.Logger))
 	}
 
 	s.lock = spindle.New(opts.Client, opts.Table, opts.Name, sopts...)
