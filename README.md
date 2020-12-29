@@ -41,7 +41,7 @@ $ kubectl delete -f k8slock.yaml
 ```
 
 - ### spindle
-This implementation is a wrapper to the [spindle](https://github.com/flowerinthenight/spindle) distributed locking library by providing a blocking `Lock(...) / Unlock()` function pair.
+This implementation is a wrapper to the [spindle](https://github.com/flowerinthenight/spindle) distributed locking library by providing a blocking `Lock(...) / Unlock()` function pair. It is probably useful if you are already using [Cloud Spanner](https://cloud.google.com/spanner/).
 
 - ### Redis
 The Redis implementation is basically a wrapper to the brilliant [redsync](https://github.com/go-redsync/redsync) package, with additional utility functions for working with Redis connection pools. It's also implemented in a way to follow the [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.go) interface.
