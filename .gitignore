@@ -16,3 +16,4 @@
 
 examples/k8slock/k8slock
 examples/redislock/redislock
+examples/spindle/spindle
