@@ -52,8 +52,8 @@ defer db.Close()
 l := dlock.NewSpindleLock(&dlock.SpindleLockOptions{
   Client:   db,
   Table:    "testlease",
-	Name:     "dlock",
-	Duration: 1000,
+  Name:     "dlock",
+  Duration: 1000,
 })
 
 start := time.Now()
