@@ -40,8 +40,8 @@ main.go:75] [10.28.4.52] got the lock in the end
 $ kubectl delete -f k8slock.yaml
 ```
 
-- ### [spindle](https://github.com/flowerinthenight/spindle)
-todo
+- ### spindle
+This implementation is a wrapper to the [spindle](https://github.com/flowerinthenight/spindle) distributed locking library by providing a blocking `Lock(...) / Unlock()` function pair.
 
 - ### Redis
 The Redis implementation is basically a wrapper to the brilliant [redsync](https://github.com/go-redsync/redsync) package, with additional utility functions for working with Redis connection pools. It's also implemented in a way to follow the [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.go) interface.
@@ -70,7 +70,7 @@ You can check out the [test file](https://github.com/flowerinthenight/dlock/blob
 ### TODO
 PR's are welcome.
 - [x] LeaseLock (k8s)
-- [ ] [spindle](https://github.com/flowerinthenight/spindle)
+- [x] spindle
 - [ ] etcd
 - [ ] Zookeeper
 - [ ] Consul
