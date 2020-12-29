@@ -49,7 +49,7 @@ ctx := context.Background()
 db, _ := spanner.NewClient(ctx, "your/database")
 defer db.Close()
 
-l := dlock.NewSpindleLock(&dlock.SpindleLockOptions{
+lock := dlock.NewSpindleLock(&dlock.SpindleLockOptions{
   Client:   db,
   Table:    "testlease",
   Name:     "dlock",
@@ -57,10 +57,10 @@ l := dlock.NewSpindleLock(&dlock.SpindleLockOptions{
 })
 
 start := time.Now()
-l.Lock(ctx)
+lock.Lock(ctx)
 log.Printf("lock acquired after %v, do protected work...", time.Since(start))
 time.Sleep(time.Second * 5)
-l.Unlock()
+lock.Unlock()
 ```
 
 - ### Redis
