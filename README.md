@@ -41,7 +41,7 @@ $ kubectl delete -f k8slock.yaml
 ```
 
 - ### spindle
-This implementation is a wrapper to the [spindle](https://github.com/flowerinthenight/spindle) distributed locking library by providing a blocking `Lock(...) / Unlock()` function pair. This is probably useful if you are already using [Cloud Spanner](https://cloud.google.com/spanner/).
+This implementation is a wrapper to the [spindle](https://github.com/flowerinthenight/spindle) distributed locking library by providing a blocking `Lock(...)` / `Unlock()` function pair. This is probably useful if you are already using [Cloud Spanner](https://cloud.google.com/spanner/).
 
 The basic usage will look something like:
 ```golang
