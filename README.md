@@ -67,6 +67,7 @@ You can check out the [test file](https://github.com/flowerinthenight/dlock/blob
 ### TODO
 PR's are welcome.
 - [x] LeaseLock (k8s)
+- [ ] [spindle](https://github.com/flowerinthenight/spindle)
 - [ ] etcd
 - [ ] Zookeeper
 - [ ] Consul
