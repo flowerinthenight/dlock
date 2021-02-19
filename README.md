@@ -6,7 +6,7 @@ A simple [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.
 
 ## Usage
 
-### LeaseLock
+**LeaseLock**
 
 The simplest usage form looks something like:
 ```golang
@@ -41,7 +41,7 @@ main.go:75] [10.28.4.52] got the lock in the end
 $ kubectl delete -f k8slock.yaml
 ```
 
-### spindle
+**spindle**
 
 This implementation is a wrapper to the [spindle](https://github.com/flowerinthenight/spindle) distributed locking library by providing a blocking `Lock(...)` / `Unlock()` function pair. This is probably useful if you are already using [Cloud Spanner](https://cloud.google.com/spanner/).
 
@@ -65,7 +65,7 @@ time.Sleep(time.Second * 5)
 lock.Unlock()
 ```
 
-### Redis
+**Redis**
 
 The Redis implementation is basically a wrapper to the brilliant [redsync](https://github.com/go-redsync/redsync) package, with additional utility functions for working with Redis connection pools. It's also implemented in a way to follow the [`Locker`](https://github.com/flowerinthenight/dlock/blob/master/dlock.go) interface.
 
@@ -90,7 +90,7 @@ You can check out the [test file](https://github.com/flowerinthenight/dlock/blob
 
 ----
 
-### TODO
+### Todo
 PR's are welcome.
 - [x] LeaseLock (k8s)
 - [x] spindle
